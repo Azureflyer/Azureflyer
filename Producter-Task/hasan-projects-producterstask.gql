@@ -1,0 +1,52 @@
+type player{
+	id: String!
+	name: String! @search(
+	by: [hash]
+)
+	surname: String!
+	position: String!
+}
+type Query {
+   greeting:String
+}
+
+type Mutation {
+   createStudent(collegeId:ID,firstName:String,lastName:String):String
+}
+
+input AddPlayerInput{
+	id: String!
+	name: String!
+	surname: String!
+	position: String!
+}
+
+input DeleteInput{
+	id: String
+}
+
+
+mutation addPlayerInput($player: [AddPlayerInput!]!){
+    addPlayerInput(input:$player)
+    player
+    {
+        id 
+        name
+        surname
+        position
+    }
+}
+
+mutation{
+    deleteplayer(id: DeleteInput){
+        player
+        {
+            name
+            surname
+        }
+    }
+}
+
+
+
+
